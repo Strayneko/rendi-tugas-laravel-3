@@ -27,8 +27,11 @@ Route::prefix('home')->group(function () {
 });
 
 // product resource controller
-Route::resource('product', ProductController::class)->except(['show', 'index'])->middleware('withAuth');
-Route::get('/product/', [ProductController::class, 'index'])->name('product.list');
+Route::resource('product', ProductController::class)
+    ->except(['show', 'index'])
+    ->middleware('withAuth');
+Route::get('/product/', [ProductController::class, 'index'])
+    ->name('product.list');
 
 // post resource controller
 Route::resource('post', PostController::class)
@@ -44,7 +47,13 @@ Route::get('/post/{post:slug}', [PostController::class, 'show'])->name('post.sho
 
 // auth route
 Route::name('auth.')->prefix('auth')->group(function () {
-    Route::get('/', [AuthController::class, 'login'])->name('login')->middleware('noAuth');
-    Route::post('/login', [AuthController::class, 'do_login'])->name('do_login')->middleware('noAuth');
-    Route::get('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('withAuth');
+    Route::get('/', [AuthController::class, 'login'])
+        ->name('login')
+        ->middleware('noAuth');
+    Route::post('/login', [AuthController::class, 'do_login'])
+        ->name('do_login')
+        ->middleware('noAuth');
+    Route::get('/logout', [AuthController::class, 'logout'])
+        ->name('logout')
+        ->middleware('withAuth');
 });
