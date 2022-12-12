@@ -18,8 +18,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect()->route('home.product');
-})->middleware('withAuth');
+    return redirect()->route('auth.login');
+});
 Route::prefix('home')->group(function () {
     Route::get('/product', [HomeController::class, 'product'])->name('home.product')->middleware('withAuth');
     Route::get('/post', [HomeController::class, 'post'])->name('home.post')->middleware('withAuth');

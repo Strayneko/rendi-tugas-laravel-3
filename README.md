@@ -1,6 +1,6 @@
 # Laravel
 
-#### Edit .env file
+#### Copy .env.example to .env and Edit .env file
 
 ```bash
 DB_CONNECTION=pgsql/mysql
@@ -11,7 +11,7 @@ DB_USERNAME=username
 DB_PASSWORD=password
 ```
 
-#### install compoer package
+#### install composer package
 
 ```bash
 composer install
