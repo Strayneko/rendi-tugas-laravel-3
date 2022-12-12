@@ -30,11 +30,16 @@ Route::prefix('home')->group(function () {
 Route::resource('product', ProductController::class)->except(['show', 'index'])->middleware('withAuth');
 Route::get('/product/', [ProductController::class, 'index'])->name('product.list');
 
-Route::get('/post', [PostController::class, 'index'])->name('post.index');
 // post resource controller
-Route::resource('post', PostController::class)->scoped([
-    'post' => 'slug'
-])->middleware('withAuth')->except('index');
+Route::resource('post', PostController::class)
+    ->scoped([
+        'post' => 'slug'
+    ])
+    ->middleware('withAuth')
+    ->except(['index', 'show']);
+Route::get('/post', [PostController::class, 'index'])->name('post.index');
+/* This is a route for showing a single post. */
+Route::get('/post/{post:slug}', [PostController::class, 'show'])->name('post.show');
 
 
 // auth route
