@@ -18,7 +18,7 @@
      <section>
          <div class="container">
              <div class="row">
-                 @foreach ($posts as $post)
+                 @foreach ($posts->skip(1) as $post)
                      <div class="col-md-4 mb-3">
                          <div class="card">
 
