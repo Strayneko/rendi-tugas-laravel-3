@@ -21,20 +21,20 @@ Route::get('/', function () {
     return redirect()->route('auth.login');
 });
 Route::prefix('home')->group(function () {
-    Route::get('/product', [HomeController::class, 'product'])->name('home.product')->middleware('withAuth');
-    Route::get('/post', [HomeController::class, 'post'])->name('home.post')->middleware('withAuth');
-    Route::get('/ajax/post', [HomeController::class, 'postAjax'])->middleware('withAuth');
+    Route::get('/product', [HomeController::class, 'product'])->name('home.product');
+    Route::get('/post', [HomeController::class, 'post'])->name('home.post');
+    Route::get('/ajax/post', [HomeController::class, 'postAjax']);
 });
 
 // product resource controller
-Route::resource('product', ProductController::class)->names([
-    'index'  => 'product.list'
-])->except('show')->middleware('withAuth');
+Route::resource('product', ProductController::class)->except(['show', 'index'])->middleware('withAuth');
+Route::get('/product/', [ProductController::class, 'index'])->name('product.list');
 
+Route::get('/post', [PostController::class, 'index'])->name('post.index');
 // post resource controller
 Route::resource('post', PostController::class)->scoped([
     'post' => 'slug'
-])->middleware('withAuth');
+])->middleware('withAuth')->except('index');
 
 
 // auth route

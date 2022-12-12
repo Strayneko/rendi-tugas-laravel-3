@@ -21,7 +21,8 @@
                 </li>
                 @if (session()->has('logged'))
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('auth.logout') }}">Logout</a>
+                        <a class="nav-link" onclick="return confirm('Apakah anda yakin?')"
+                            href="{{ route('auth.logout') }}">Logout</a>
                     </li>
                 @else
                     <li class="nav-item">
